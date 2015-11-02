@@ -27,11 +27,14 @@ var Game = React.createClass({
     if (this.state.board.won() || this.state.board.lost()) {
       var text = this.state.board.won() ? "you win!" : "you lose!"
       modal =
-        <div className="modal active">
-          <p>
-            {text}
-          </p>
-          <button onClick={this._restartGame}>Play Again?</button>
+        <div>
+          <div className="modal active">
+            <p>
+              {text}
+            </p>
+            <button onClick={this._restartGame}>Play Again?</button>
+          </div>
+          <span className="screen"></span>
         </div>
     }
 
