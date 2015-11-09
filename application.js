@@ -25,7 +25,7 @@ var Game = React.createClass({
 
     var modal = "";
     if (this.state.board.won() || this.state.board.lost()) {
-      var text = this.state.board.won() ? "you win!" : "you lose!"
+      var text = this.state.board.won() ? "you win!" : "you lose!";
       modal =
         <div>
           <div className="modal active">
@@ -35,7 +35,7 @@ var Game = React.createClass({
             <button onClick={this._restartGame}>Play Again?</button>
           </div>
           <span className="screen"></span>
-        </div>
+        </div>;
     }
 
     return <div>
@@ -58,9 +58,9 @@ var Board = React.createClass({
     board.grid.forEach(function(row, i) {
       var tiles = [];
       row.forEach(function(tile, j) {
-        tiles.push(<Tile key={board.gridSize * i + j} tile={this.props.board.grid[i][j]} update={this.props.update} />)
+        tiles.push(<Tile key={board.gridSize * i + j} tile={this.props.board.grid[i][j]} update={this.props.update} />);
       }.bind(this));
-      grid.push(<div key={i} className="row"> {tiles} </div>)
+      grid.push(<div key={i} className="row"> {tiles} </div>);
     }.bind(this));
 
     return (
@@ -72,6 +72,7 @@ var Board = React.createClass({
 });
 
 var Tile = React.createClass({
+
   render: function() {
     var text;
     var tile = this.props.tile;
@@ -84,7 +85,7 @@ var Tile = React.createClass({
       text = this.props.tile.adjacentBombCount();
     }
 
-    var classes = "tile " + (tile.explored ? "explored" : "") + (tile.flagged ? "flagged" : "")
+    var classes = "tile " + (tile.explored ? "explored" : "") + (tile.flagged ? "flagged" : "");
     return <div className={classes} onClick={this._handleClick}>{text}</div>;
   },
 
