@@ -36,11 +36,16 @@ h1 {
   padding-top: 3px;
   border-style: outset;
   font-size: 24px;
+  cursor: pointer;
 }
 
 .tile:active, .explored {
   border-style: inset;
   background: #eee;
+}
+
+.explored {
+  cursor: default;
 }
 
 .tile.perimeter {
@@ -49,7 +54,7 @@ h1 {
 
 .flagged {
   color: rgb(255,105,180);
-;
+  cursor: pointer;
 }
 
 .modal {
