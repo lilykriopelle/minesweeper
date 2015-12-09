@@ -99,6 +99,6 @@ h1 {
   position: absolute;
   top: 30px;
   left: 30px;
-  border: 1px solid black;
+  border: 5px solid gray;
   padding: 20px 50px;
 }
