@@ -40,10 +40,16 @@ h1 {
 
 .tile:active, .explored {
   border-style: inset;
+  background: #eee;
+}
+
+.tile.perimeter {
+  background: rgba(255,105,180,.3);
 }
 
 .flagged {
-  color: red;
+  color: rgb(255,105,180);
+;
 }
 
 .modal {

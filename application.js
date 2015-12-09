@@ -81,12 +81,27 @@ var Tile = React.createClass({
       text = "\u2691";
     } else if (tile.explored && tile.bombed) {
       text = "\u2622";
-    } else if (tile.explored) {
+    } else if (tile.explored && this.shouldDisplayCount()) {
       text = this.props.tile.adjacentBombCount();
+    } else {
+      text = "";
     }
 
-    var classes = "tile " + (tile.explored ? "explored" : "") + (tile.flagged ? "flagged" : "");
+    var classes = "tile " +
+                  (tile.explored ? "explored" : "") +
+                  (tile.flagged ? "flagged" : "") +
+                  (tile.explored && this.shouldDisplayCount() ? " perimeter" : "");
     return <div className={classes} onClick={this._handleClick}>{text}</div>;
+  },
+
+  shouldDisplayCount: function () {
+    var tile = this.props.tile;
+    for (var i = 0; i < tile.neighbors().length; i++) {
+      if (!tile.neighbors()[i].explored) {
+        return true;
+      }
+    }
+    return false;
   },
 
   _handleClick: function(e) {
