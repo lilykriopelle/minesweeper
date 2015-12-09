@@ -101,6 +101,10 @@ Board.prototype.plantBombs = function () {
   }
 };
 
+Board.prototype.over = function () {
+  return this.lost() || this.won();
+};
+
 Board.prototype.lost = function () {
   var lost = false;
   this.grid.forEach(function(row) {

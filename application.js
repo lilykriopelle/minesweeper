@@ -24,8 +24,9 @@ var Game = React.createClass({
   render: function() {
 
     var modal = "";
-    if (this.state.board.won() || this.state.board.lost()) {
-      var text = this.state.board.won() ? "you win!" : "you lose!";
+    if (this.state.board.over()) {
+      var text = (this.state.board.won() ? "you won" : "you lost") +
+                  " in " + this.refs.timer.format(this.refs.timer.state.time);
       modal =
         <div>
           <div className="modal active">
@@ -40,11 +41,13 @@ var Game = React.createClass({
 
     return <div>
             {modal}
+            <Timer ref="timer" ticking={!this.state.board.over()}/>
             <Board board={this.state.board} update={this.updateGame} />
           </div>;
   },
 
   _restartGame: function() {
+    this.refs.timer.restart();
     this.setState({board: new Minesweeper.Board(12, 15)});
   }
 
@@ -111,6 +114,52 @@ var Tile = React.createClass({
       this.props.update(this.props.tile, true);
     }
   }
+});
+
+var Timer = React.createClass({
+
+  getInitialState: function () {
+    return {time: 0};
+  },
+
+  componentDidMount: function () {
+    this.tickInterval = window.setInterval(function () {
+      if (this.props.ticking) {
+        this.setState({time: this.state.time + 1});
+      }
+    }.bind(this), 1000);
+  },
+
+  componentWillUnmount: function () {
+    window.clearInterval(this.tickInterval);
+  },
+
+  pad: function (num) {
+    if (num < 10) {
+      return "0" + num.toString();
+    } else {
+      return num.toString();
+    }
+  },
+
+  format: function (seconds) {
+    var minutes = this.pad(Math.floor(this.state.time / 60));
+    var seconds = this.pad(this.state.time % 60);
+    return minutes + "m:" + seconds + "s";
+  },
+
+  restart: function () {
+    this.setState(this.getInitialState());
+  },
+
+  render: function () {
+    return (
+      <div className="timer">
+        <h2> Time </h2>
+        {this.format(this.state.time)}
+      </div>
+    );
+  },
 });
 
 React.render(<Game/>, document.getElementById('content'));

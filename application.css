@@ -11,6 +11,11 @@ h1, p {
   margin-bottom: 25px;
 }
 
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
 h1 {
   text-transform: uppercase;
 }
@@ -18,12 +23,6 @@ h1 {
 .row {
   width: 480px;
   margin: auto;
-}
-
-.modal button {
-  font-size: 20px;
-  margin: 20px;
-  padding: 10px;
 }
 
 .tile {
@@ -72,10 +71,16 @@ h1 {
   transform: translateX(-50%) translateY(-50%);
   border: 5px solid gray;
   background: white;
-  padding: 10px;
-  padding-bottom: 40px;
+  padding: 20px;
   width: 250px;
-  height: 100px;
+}
+
+
+.modal button {
+  font-size: 20px;
+  margin: auto;
+  padding: 10px;
+  display: block;
 }
 
 .modal.active + .screen {
@@ -86,4 +91,14 @@ h1 {
   width: 100%;
   height: 100%;
   background-color: rgba(100,100,100,.4);
+}
+
+.timer {
+  background: white;
+  text-align: center;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  border: 1px solid black;
+  padding: 20px 50px;
 }
