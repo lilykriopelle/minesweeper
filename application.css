@@ -81,6 +81,7 @@ h1 {
   margin: auto;
   padding: 10px;
   display: block;
+  cursor: pointer;
 }
 
 .modal.active + .screen {
